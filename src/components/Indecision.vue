@@ -1,13 +1,13 @@
 <template>
-	<img src="https://via.placeholder.com/250" alt="bg" />
+	<img :src="image" alt="bg" v-if="image" />
 	<div class="bg-dark"></div>
 	<div class="indecision-container">
 		<input type="text" placeholder="ask me a question" v-model="question" />
-		<p>End your question with a ? mark</p>
+		<p>End your question with a question (?) mark</p>
 
 		<div>
-			<h2>will I be happy?</h2>
-			<h1>Yes, No, ...Thinking</h1>
+			<h2>Is it true?</h2>
+			<h1>{{ answer }}</h1>
 		</div>
 	</div>
 </template>
@@ -18,12 +18,25 @@ export default {
 	data() {
 		return {
 			question: '',
+			answer: '',
+			image: '',
 		};
 	},
+	methods: {
+		async getAnswer() {
+			this.answer = 'Thinking...';
+
+			const response = await fetch('https://yesno.wtf/api');
+			const { answer, image } = (await response.json()) as { answer: string; image: string };
+
+			this.answer = answer;
+			this.image = image;
+		},
+	},
 	watch: {
-		question(value, oldValue) {
+		question(value) {
 			if (!value.endsWith('?')) return;
-			/* TODO: fetch API */
+			this.getAnswer();
 		},
 	},
 };
