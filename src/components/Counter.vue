@@ -1,6 +1,6 @@
 <template lang="">
 	<div class="counter">
-		<h2>Counter</h2>
+		<h2>{{ customTitle }}</h2>
 		<p>{{ counter }}<sup>2</sup> = {{ squareCounter }}</p>
 		<div class="counter__buttons">
 			<button @click="increment">+1</button>
@@ -12,6 +12,7 @@
 <script lang="ts">
 export default {
 	name: 'Counter',
+	props: ['title'],
 	data() {
 		return {
 			counter: 10,
@@ -28,6 +29,9 @@ export default {
 	computed: {
 		squareCounter() {
 			return this.counter * this.counter;
+		},
+		customTitle() {
+			return this.title || 'Counter';
 		},
 	},
 };
