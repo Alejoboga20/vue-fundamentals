@@ -1,7 +1,7 @@
 <template lang="">
 	<div class="counter">
 		<h2>Counter</h2>
-		<p>{{ counter }}<sup>2</sup> = {{ counter * counter }}</p>
+		<p>{{ counter }}<sup>2</sup> = {{ squareCounter }}</p>
 	</div>
 </template>
 
@@ -12,6 +12,16 @@ export default {
 		return {
 			counter: 10,
 		};
+	},
+	methods: {
+		getSquare() {
+			return this.counter * this.counter;
+		},
+	},
+	computed: {
+		squareCounter() {
+			return this.counter * this.counter;
+		},
 	},
 };
 </script>
