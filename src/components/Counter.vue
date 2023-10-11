@@ -2,6 +2,10 @@
 	<div class="counter">
 		<h2>Counter</h2>
 		<p>{{ counter }}<sup>2</sup> = {{ squareCounter }}</p>
+		<div class="counter__buttons">
+			<button @click="increment">+1</button>
+			<button @click="decrement">-1</button>
+		</div>
 	</div>
 </template>
 
@@ -14,8 +18,11 @@ export default {
 		};
 	},
 	methods: {
-		getSquare() {
-			return this.counter * this.counter;
+		increment() {
+			this.counter++;
+		},
+		decrement() {
+			this.counter--;
 		},
 	},
 	computed: {
@@ -29,5 +36,21 @@ export default {
 <style scoped>
 .counter {
 	text-align: center;
+}
+
+.counter__buttons {
+	padding: 32px;
+}
+
+button {
+	background: #fff;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	margin: 0 4px;
+	padding: 8px;
+}
+button:hover {
+	background: #eee;
 }
 </style>
