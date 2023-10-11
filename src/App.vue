@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import Counter from './components/Counter.vue';
+/* import Counter from './components/Counter.vue'; */
+import Indecision from './components/Indecision.vue';
 </script>
 
 <template>
-	<header>
-		<img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-		<Counter title="Persons In" :start="10" />
-	</header>
+	<main class="main">
+		<!-- <Counter title="Persons In" :start="10" /> -->
+		<Indecision />
+	</main>
 </template>
 
 <style scoped>
 header {
 	line-height: 1.5;
+}
+
+.main {
+	text-align: center;
 }
 
 .logo {
