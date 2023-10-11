@@ -2,7 +2,7 @@
 	<img src="https://via.placeholder.com/250" alt="bg" />
 	<div class="bg-dark"></div>
 	<div class="indecision-container">
-		<input type="text" placeholder="ask me a question" />
+		<input type="text" placeholder="ask me a question" v-model="question" />
 		<p>End your question with a ? mark</p>
 
 		<div>
@@ -15,6 +15,17 @@
 <script lang="ts">
 export default {
 	name: 'Indecision',
+	data() {
+		return {
+			question: '',
+		};
+	},
+	watch: {
+		question(value, oldValue) {
+			if (!value.endsWith('?')) return;
+			/* TODO: fetch API */
+		},
+	},
 };
 </script>
 
