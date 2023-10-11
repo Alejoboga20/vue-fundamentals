@@ -12,10 +12,17 @@
 <script lang="ts">
 export default {
 	name: 'Counter',
-	props: ['title'],
+	props: {
+		title: String,
+		start: {
+			type: Number,
+			default: 0,
+			validator: (value: number) => value >= 0,
+		},
+	},
 	data() {
 		return {
-			counter: 10,
+			counter: this.start || 0,
 		};
 	},
 	methods: {
