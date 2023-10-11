@@ -1,12 +1,23 @@
 <template lang="">
-	<h2>Counter</h2>
-	<p>10</p>
+	<div class="counter">
+		<h2>Counter</h2>
+		<p>{{ counter }}<sup>2</sup> = {{ counter * counter }}</p>
+	</div>
 </template>
 
 <script lang="ts">
 export default {
 	name: 'Counter',
+	data() {
+		return {
+			counter: 10,
+		};
+	},
 };
 </script>
 
-<style lang=""></style>
+<style scoped>
+.counter {
+	text-align: center;
+}
+</style>
