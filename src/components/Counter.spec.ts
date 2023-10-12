@@ -1,19 +1,20 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, VueWrapper } from '@vue/test-utils';
 import Counter from './Counter.vue';
 
 describe('Counter.vue', () => {
+	let wrapper: VueWrapper<any>;
 	const DEFAULT_TITLE = 'Counter';
 	const DEFAULT_COUNTER_VALUE = 0;
 
-	test('should match the snapshot', () => {
-		const wrapper = shallowMount(Counter);
+	beforeEach(() => {
+		wrapper = shallowMount(Counter);
+	});
 
+	test('should match the snapshot', () => {
 		expect(wrapper.html()).toMatchSnapshot();
 	});
 
 	test('should have the default title', () => {
-		const wrapper = shallowMount(Counter);
-
 		const titleElement = wrapper.find('h2').exists();
 		expect(titleElement).toBeTruthy();
 
@@ -22,14 +23,12 @@ describe('Counter.vue', () => {
 	});
 
 	test('should have the default counter value', () => {
-		const wrapper = shallowMount(Counter);
 		const counterValue = wrapper.find('[data-testid="counter-value"]').text();
 
 		expect(counterValue).toBe(DEFAULT_COUNTER_VALUE.toString());
 	});
 
 	test('should increment the counter by 1', async () => {
-		const wrapper = shallowMount(Counter);
 		const [increaseButton] = wrapper.findAll('button');
 		await increaseButton.trigger('click');
 
@@ -38,7 +37,6 @@ describe('Counter.vue', () => {
 	});
 
 	test('should decrement the counter by 1', async () => {
-		const wrapper = shallowMount(Counter);
 		const [_, decreaseButton] = wrapper.findAll('button');
 
 		await decreaseButton.trigger('click');
