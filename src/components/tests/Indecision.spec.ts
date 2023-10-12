@@ -8,6 +8,7 @@ describe('Indecision.vue', () => {
 	let clgSpy: SpyInstance<any, any>;
 
 	const INPUT_WITHOUT_QUESTION_MARK = 'test';
+	const INPUT_WITH_QUESTION_MARK = 'test?';
 
 	beforeEach(() => {
 		wrapper = shallowMount(Indecision);
@@ -27,7 +28,13 @@ describe('Indecision.vue', () => {
 		expect(getAnswerSpy).not.toHaveBeenCalled();
 	});
 
-	test('should trigger the fetch when question mark (?) is typed', () => {});
+	test('should trigger the fetch when question mark (?) is typed', async () => {
+		const getAnswerSpy = vi.spyOn(wrapper.vm, 'getAnswer');
+		const input = wrapper.find('input');
+		await input.setValue(INPUT_WITH_QUESTION_MARK);
+
+		expect(getAnswerSpy).toHaveBeenCalled();
+	});
 
 	test('should getAnswers', () => {});
 	test('should handler getAnswers error', () => {});
