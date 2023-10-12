@@ -43,4 +43,11 @@ describe('Counter.vue', () => {
 		const counterValue = wrapper.find('[data-testid="counter-value"]').text();
 		expect(counterValue).toBe((+DEFAULT_COUNTER_VALUE - 1).toString());
 	});
+
+	test('should have the default props', () => {
+		const { title, start } = wrapper.props();
+
+		expect(title).toBe(undefined);
+		expect(start).toBe(0);
+	});
 });
