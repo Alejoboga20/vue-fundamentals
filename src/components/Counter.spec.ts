@@ -30,10 +30,14 @@ describe('Counter.vue', () => {
 
 	test('should increment the counter by 1', async () => {
 		const wrapper = shallowMount(Counter);
-		const increaseButton = wrapper.find('button');
+		const [increaseButton, decreaseButton] = wrapper.findAll('button');
 		await increaseButton.trigger('click');
 
-		const counterValue = wrapper.find('[data-testid="counter-value"]').text();
+		let counterValue = wrapper.find('[data-testid="counter-value"]').text();
 		expect(counterValue).toBe((+DEFAULT_COUNTER_VALUE + 1).toString());
+
+		await decreaseButton.trigger('click');
+		counterValue = wrapper.find('[data-testid="counter-value"]').text();
+		expect(counterValue).toBe(DEFAULT_COUNTER_VALUE.toString());
 	});
 });
