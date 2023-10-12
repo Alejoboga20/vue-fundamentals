@@ -19,10 +19,12 @@ describe('Indecision.vue', () => {
 	});
 
 	test('should not trigger the fetch when question mark (?) is not present', async () => {
+		const getAnswerSpy = vi.spyOn(wrapper.vm, 'getAnswer');
 		const input = wrapper.find('input');
 		await input.setValue(INPUT_WITHOUT_QUESTION_MARK);
 
 		expect(clgSpy).toHaveBeenCalledWith({ value: INPUT_WITHOUT_QUESTION_MARK });
+		expect(getAnswerSpy).not.toHaveBeenCalled();
 	});
 
 	test('should trigger the fetch when question mark (?) is typed', () => {});
