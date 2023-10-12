@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Indecision.vue > should match the snapshot 1`] = `
+"<!--v-if-->
+<div data-v-4a8fca50=\\"\\" class=\\"bg-dark\\"></div>
+<div data-v-4a8fca50=\\"\\" class=\\"indecision-container\\"><input data-v-4a8fca50=\\"\\" type=\\"text\\" placeholder=\\"ask me a question\\">
+  <p data-v-4a8fca50=\\"\\">End your question with a question (?) mark</p>
+  <div data-v-4a8fca50=\\"\\" style=\\"display: none;\\">
+    <h2 data-v-4a8fca50=\\"\\"></h2>
+    <h1 data-v-4a8fca50=\\"\\"></h1>
+  </div>
+</div>"
+`;
