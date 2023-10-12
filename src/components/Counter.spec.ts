@@ -3,8 +3,12 @@ import Counter from './Counter.vue';
 
 describe('Counter.vue', () => {
 	let wrapper: VueWrapper<any>;
+
 	const DEFAULT_TITLE = 'Counter';
+	const CUSTOM_TITLE = 'Custom Counter Title';
+
 	const DEFAULT_COUNTER_VALUE = 0;
+	const CUSTOM_START = 10;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Counter);
@@ -49,5 +53,14 @@ describe('Counter.vue', () => {
 
 		expect(title).toBe(undefined);
 		expect(start).toBe(0);
+	});
+
+	test('should show props', () => {
+		wrapper = shallowMount(Counter, { props: { title: CUSTOM_TITLE, start: CUSTOM_START } });
+		const title = wrapper.find('h2').text();
+		const counter = wrapper.find('[data-testid="counter-value"]').text();
+
+		expect(title).toBe(CUSTOM_TITLE);
+		expect(counter).toBe(CUSTOM_START.toString());
 	});
 });
