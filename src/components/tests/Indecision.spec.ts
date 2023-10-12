@@ -9,6 +9,10 @@ const API_RESPONSE = {
 	image: 'https://yesno.wtf/assets/yes/2.gif',
 };
 
+const ERROR_RESPONSE = {
+	message: 'Something went wrong',
+};
+
 const INPUT_WITHOUT_QUESTION_MARK = 'test';
 const INPUT_WITH_QUESTION_MARK = 'test?';
 
@@ -59,5 +63,15 @@ describe('Indecision.vue', () => {
 		expect(image.attributes('src')).toBe(API_RESPONSE.image);
 		expect(answer).toBe(API_RESPONSE.answer);
 	});
-	test('should handler getAnswers error', () => {});
+
+	test('should handler getAnswers error', async () => {
+		fetch.mockImplementationOnce(() => Promise.reject(ERROR_RESPONSE));
+		await wrapper.vm.getAnswer();
+
+		const answer = wrapper.find('h1').text();
+		const image = wrapper.find('img');
+
+		expect(image.exists()).toBeFalsy();
+		expect(answer).toBe(ERROR_RESPONSE.message);
+	});
 });

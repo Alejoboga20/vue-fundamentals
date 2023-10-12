@@ -27,14 +27,19 @@ export default {
 		async getAnswer() {
 			this.answer = 'Thinking...';
 
-			const response = await fetch('https://yesno.wtf/api');
-			const { answer, image } = (await response.json()) as {
-				answer: 'Yes' | 'No' | 'Maybe';
-				image: string;
-			};
+			try {
+				const response = await fetch('https://yesno.wtf/api');
+				const { answer, image } = (await response.json()) as {
+					answer: 'Yes' | 'No' | 'Maybe';
+					image: string;
+				};
 
-			this.answer = answer;
-			this.image = image;
+				this.answer = answer;
+				this.image = image;
+			} catch (error) {
+				this.answer = 'Something went wrong';
+				this.image = '';
+			}
 		},
 	},
 	watch: {
