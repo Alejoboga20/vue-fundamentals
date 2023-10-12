@@ -39,6 +39,7 @@ export default {
 	},
 	watch: {
 		question(value) {
+			console.log({ value });
 			this.isValidQuestion = false;
 			if (!value.endsWith('?')) return;
 
