@@ -3,7 +3,7 @@ import Counter from './Counter.vue';
 
 describe('Counter.vue', () => {
 	const DEFAULT_TITLE = 'Counter';
-	const DEFAULT_COUNTER_VALUE = '0';
+	const DEFAULT_COUNTER_VALUE = 0;
 
 	test('should match the snapshot', () => {
 		const wrapper = shallowMount(Counter);
@@ -23,8 +23,17 @@ describe('Counter.vue', () => {
 
 	test('should have the default counter value', () => {
 		const wrapper = shallowMount(Counter);
-		const counterValue = wrapper.find('[data-testid="counter-value"]').text().split('')[0];
+		const counterValue = wrapper.find('[data-testid="counter-value"]').text();
 
-		expect(counterValue).toBe(DEFAULT_COUNTER_VALUE);
+		expect(counterValue).toBe(DEFAULT_COUNTER_VALUE.toString());
+	});
+
+	test('should increment the counter by 1', async () => {
+		const wrapper = shallowMount(Counter);
+		const increaseButton = wrapper.find('button');
+		await increaseButton.trigger('click');
+
+		const counterValue = wrapper.find('[data-testid="counter-value"]').text();
+		expect(counterValue).toBe((+DEFAULT_COUNTER_VALUE + 1).toString());
 	});
 });
